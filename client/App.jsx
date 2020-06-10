@@ -44,6 +44,9 @@ const App = () => {
           <Route exact path="/">
             <Login />
           </Route>
+          <Route exact path="/getstarted">
+            <GetStarted />
+          </Route>
         </Switch>
       </Router>
     </div>
