@@ -1,18 +1,32 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Container } from '@material-ui/core';
-import CompanyComparison from './CompanyComparison.jsx';
-import IndividualComparison from './IndividualComparison.jsx';
+// import CompanyComparison from './CompanyComparison.jsx';
+// import IndividualComparison from './IndividualComparison.jsx';
 import UserHeader from './layout/UserHeader.jsx';
 import { UserContext } from './contexts/userContext.js';
-import ComparisonTabs from './layout/ComparisonTabs.jsx';
+// import ComparisonTabs from './layout/ComparisonTabs.jsx';
 import BarChart from './BarChart.jsx';
-// import PieChart from './PieChart';
+import PieChart from './PieChart';
 
 const Home = () => {
-  const { fetchUserData } = useContext(UserContext);
-  // const [view, setView] = useState(0);
+  const { fetchUserData, genderList, raceList, ageList } = useContext(
+    UserContext
+  );
+  const [view, setView] = useState(0);
   const [loading, setLoading] = useState(true);
   const [selectedFocus, setselectedFocus] = useState('race');
+  const [color, setColor] = useState([
+    '#4e79a7',
+    '#f28e2c',
+    '#e15759',
+    '#76b7b2',
+    '#59a14f',
+    '#edc949',
+    '#af7aa1',
+    '#ff9da7',
+    '#9c755f',
+    '#bab0ab',
+  ]);
 
   // Watch tab switching
   const handleTabSwitch = (e, view) => {
@@ -43,7 +57,20 @@ const Home = () => {
                 selectedFocus={selectedFocus}
               />
             </svg>
-            {/* <PieChart /> */}
+            <PieChart
+              list={genderList}
+              title="Gender"
+              colorList={color}
+              handleTabSwitch={handleTabSwitch}
+              index={0}
+            />
+            <PieChart
+              list={raceList}
+              title="Race"
+              colorList={color}
+              handleTabSwitch={handleTabSwitch}
+              index={1}
+            />
           </Container>
         </div>
       )}
