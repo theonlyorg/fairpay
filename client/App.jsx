@@ -13,10 +13,12 @@ const App = () => {
     <React.Fragment>
       <Header />
       <Switch>
-        <Route exact path="/getstarted" component={GetStarted} />
-        <Route exact path="/home" component={Home} />
-        <Route exact path="/profile" component={Profile} />
-        <Route exact path="/" component={Login} />
+        <UserContextProvider>
+          <Route exact path="/getstarted" component={GetStarted} />
+          <Route exact path="/home" component={Home} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/" component={Login} />
+        </UserContextProvider>
       </Switch>
     </React.Fragment>
   );
