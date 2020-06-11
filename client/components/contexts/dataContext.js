@@ -24,7 +24,7 @@ const DataContextProvider = props => {
   }
 
   return (
-    <DataContextProvider value={{ data, fetchData }}>{props.children}</DataContextProvider>
+    <DataContext.Provider value={{ data, fetchData }}>{props.children}</DataContext.Provider>
   );
 };
 
