@@ -4,8 +4,16 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #ffffff;
-  color: #424242;
+  /* background-color: #ffffff; */
+  /* background-color: #303030; */
+  /* color: #424242; */
+  background-image: 
+  url('/client/images/LA3.jpg'),
+  linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+  background-blend-mode: overlay;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 110vh;
 }
 
 #company_container {
