@@ -19,7 +19,7 @@ const color = d3.scaleOrdinal([
   '#ff9da7',
   '#9c755f',
   '#bab0ab',
-])
+]) 
   
 const Home = () => {
   const { fetchUserData } = useContext(UserContext);
@@ -27,10 +27,10 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [selectedFocus, setselectedFocus] = useState("race");
 
-  // Watch tab switching
-  // const handleTabSwitch = (e, view) => {
-  //   setSelectedFocus(view);
-  // };
+  // Watch focus switching
+  const handleFocusSwitch = (e, view) => {
+    setSelectedFocus(view);
+  };
 
   // Fetch user data on mount
   useEffect(() => {
@@ -52,7 +52,7 @@ const Home = () => {
                 positionY={300} 
                 width={500} 
                 height={300}    
-                index={0}
+                index={0} 
                 selectedFocus={selectedFocus}
               />
             </svg>
