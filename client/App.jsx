@@ -6,7 +6,6 @@ import GetStarted from './components/GetStarted.jsx';
 import Header from './components/layout/Header.jsx';
 import './stylesheets/styles.css';
 import UserContextProvider from './components/contexts/userContext';
-import DataContextProvider from './components/contexts/dataContext';
 
 const App = () => {
   return (
@@ -14,11 +13,9 @@ const App = () => {
       <Header />
       <Switch>
         <UserContextProvider>
-          <DataContextProvider>
-            <Route exact path="/getstarted" component={GetStarted} />
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/" component={Login} />
-          </DataContextProvider>
+          <Route exact path="/getstarted" component={GetStarted} />
+          <Route exact path="/home" component={Home} />
+          <Route exact path="/" component={Login} />
         </UserContextProvider>
       </Switch>
     </React.Fragment>

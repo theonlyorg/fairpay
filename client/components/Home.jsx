@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Container } from '@material-ui/core';
-// import CompanyComparison from './CompanyComparison.jsx';
-// import IndividualComparison from './IndividualComparison.jsx';
-import UserHeader from './layout/UserHeader.jsx';
 import { UserContext } from './contexts/userContext.js';
-// import ComparisonTabs from './layout/ComparisonTabs.jsx';
 import BarChart from './BarChart.jsx';
 import PieChart from './PieChart';
+import UserHeader from './layout/UserHeader.jsx';
+// import ComparisonTabs from './layout/ComparisonTabs.jsx';
+// import CompanyComparison from './CompanyComparison.jsx';
+// import IndividualComparison from './IndividualComparison.jsx';
 
 const Home = () => {
   const { fetchUserData, genderList, raceList, ageList } = useContext(
@@ -14,7 +14,7 @@ const Home = () => {
   );
   const [view, setView] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [selectedFocus, setSelectedFocus] = useState('race');
+  const [selectedFocus, setSelectedFocus] = useState(0);
   const [colorList, setColorList] = useState([
     '#4e79a7',
     '#f28e2c',
@@ -55,6 +55,7 @@ const Home = () => {
                 height={300}
                 index={0}
                 selectedFocus={selectedFocus}
+                colorLisst={colorList}
               />
             </svg>
             <PieChart
@@ -70,6 +71,13 @@ const Home = () => {
               colorList={colorList}
               handleTabSwitch={handleTabSwitch}
               index={1}
+            />
+            <PieChart
+              list={ageList}
+              title="Age"
+              colorList={colorList}
+              handleTabSwitch={handleTabSwitch}
+              index={2}
             />
           </Container>
         </div>
