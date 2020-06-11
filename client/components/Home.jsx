@@ -8,28 +8,13 @@ import { UserContext } from './contexts/userContext.js';
 import BarChart from './BarChart.jsx';
 import PieChart from './PieChart';
 
-import * as d3 from 'd3';
-
-const color = d3.scaleOrdinal([
-  '#4e79a7',
-  '#f28e2c',
-  '#e15759',
-  '#76b7b2',
-  '#59a14f',
-  '#edc949',
-  '#af7aa1',
-  '#ff9da7',
-  '#9c755f',
-  '#bab0ab',
-]);
-
 const Home = () => {
   const { fetchUserData, genderList, raceList, ageList } = useContext(
     UserContext
   );
   const [view, setView] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [selectedFocus, setselectedFocus] = useState('race');
+  const [selectedFocus, setSelectedFocus] = useState('race');
   const [colorList, setColorList] = useState([
     '#4e79a7',
     '#f28e2c',
