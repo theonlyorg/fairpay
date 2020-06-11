@@ -8,6 +8,7 @@ const UserContextProvider = props => {
     name: '',
     jobTitle: '',
     company: '',
+    base_salary: '',
   });
 
   // Stats state
@@ -23,6 +24,7 @@ const UserContextProvider = props => {
     fetch('/api/company')
       .then(res => res.json())
       .then(res => {
+        // console.log('in user context', res);
         const {
           currentUser,
           raceStats,
@@ -33,12 +35,13 @@ const UserContextProvider = props => {
         } = res;
 
         // Set user state
-        const { name, linkedin_id, job_title } = currentUser;
+        const { name, linkedin_id, job_title, base_salary } = currentUser;
         setUser(state => ({
           ...state,
           name: name,
           company: linkedin_id,
           jobTitle: job_title,
+          base_salary: base_salary,
         }));
 
         // Set stats and company wide state
