@@ -1,11 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* 
 #comparison_tabs {
   width: 33em;
-}
+} */
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #ffffff;
-  color: #424242;
+  /* background-color: #ffffff; */
+  /* background-color: #303030; */
+  /* color: #424242; */
+  background-image: 
+  url('/client/images/LA4.jpg'),
+  linear-gradient(rgba(255,255,255,0.3),rgba(255,255,255,0.3));
+  /* linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)); */
+  background-blend-mode: overlay;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 110vh;
 }
 
 #company_container {
@@ -35,7 +50,9 @@ body {
   width: 174px;
   height: 42px;
 }
+
 .current_user_header {
+  margin-top: 5em;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -49,6 +66,7 @@ body {
 }
 
 #current_user_label {
+  margin-top: 0.6em;
   font-weight: 700;
   font-size: 1rem;
 }
@@ -71,6 +89,7 @@ body {
 }
 
 #appBar {
-  background-color: #ff8f00;
-  justify-content: space-between;
+  /* background-color: #ff8f00; */
+  background-color: rgb(121, 82, 179);
+  /* justify-content: space-between; */
 }

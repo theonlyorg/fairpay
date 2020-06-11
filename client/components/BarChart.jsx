@@ -36,7 +36,7 @@ const Bar = props => {
  
   return (
     <g>
-      <rect x={x + 5} y={y + 5} width={width} ref={rectRef} fill="green" fill-opacity="60%"/>
+      <rect x={x + 5} y={y + 5} width={width} ref={rectRef} fill="green" fill-opacity="80%"/>
       <text
         x={x + 40}
         transform="scale(1, -1)"
@@ -93,13 +93,13 @@ const BarChart = props => {
 
   // Generate Category Labels as an array of svg text elems
   const categoriesLabel = selectedList.map((row, i) => (
-    <text
+    <text fill="white"
       key={i}
       x={i * 80 + 40}
       y={10}
       textAnchor="middle"
       transform={`scale(1, -1)`}
-      style={{ fontSize: "8px", fontFamily: "roboto" }}
+      style={{ fontSize: "8px", fontFamily: "roboto", fontStyle: "bold" }}
     >
       {capitalize(row[selectedFocus])}
     </text>
