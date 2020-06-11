@@ -8,4 +8,18 @@
 
 import React, { Component } from 'react';
 
+import { Card, TextField } from '@material-ui/core';
+
 // editing birthdate component should be a "picker"
+
+function ProfileCard(props) {
+  return (
+    <React.Fragment>
+      <Card>
+        <TextField variant="outlined" />
+      </Card>
+    </React.Fragment>
+  );
+}
+
+export default ProfileCard;

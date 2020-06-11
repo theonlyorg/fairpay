@@ -5,6 +5,7 @@ import { Button, Typography, SvgIcon } from '@material-ui/core';
 import Home from './components/Home.jsx';
 import Login from './components/Login.jsx';
 import GetStarted from './components/GetStarted.jsx';
+import Profile from './components/Profile.jsx';
 import Header from './components/layout/Header.jsx';
 
 import './stylesheets/styles.css';
