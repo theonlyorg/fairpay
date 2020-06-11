@@ -4,7 +4,7 @@ import UserContextProvider from './components/contexts/userContext.js';
 import Home from './components/Home.jsx';
 import Login from './components/Login.jsx';
 import GetStarted from './components/GetStarted.jsx';
-import Profile from './components/Profile.jsx';
+import Profile from './components/Profile/Profile.jsx';
 import Header from './components/layout/Header.jsx';
 import './stylesheets/styles.css';
 
