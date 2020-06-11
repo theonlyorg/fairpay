@@ -80,25 +80,6 @@ const CompanyForm = () => {
         console.error('Error fetching company names:', error);
       });
   }
-
-  /*
-  function getRoleCount(company) {
-    const data = { company_name: company };
-    fetch('/api/jobTitles', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then((data) => {
-        return data.json();
-      })
-      .then((res) => setTitleCount(res))
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  }*/
 };
 
 export default CompanyForm;

@@ -8,6 +8,21 @@ import { UserContext } from './contexts/userContext.js';
 import BarChart from './BarChart.jsx';
 import PieChart from './PieChart';
 
+import * as d3 from 'd3';
+
+const color = d3.scaleOrdinal([
+  '#4e79a7',
+  '#f28e2c',
+  '#e15759',
+  '#76b7b2',
+  '#59a14f',
+  '#edc949',
+  '#af7aa1',
+  '#ff9da7',
+  '#9c755f',
+  '#bab0ab',
+]);
+
 const Home = () => {
   const { fetchUserData, genderList, raceList, ageList } = useContext(
     UserContext
@@ -15,7 +30,7 @@ const Home = () => {
   const [view, setView] = useState(0);
   const [loading, setLoading] = useState(true);
   const [selectedFocus, setselectedFocus] = useState('race');
-  const [color, setColor] = useState([
+  const [colorList, setColorList] = useState([
     '#4e79a7',
     '#f28e2c',
     '#e15759',
@@ -50,7 +65,7 @@ const Home = () => {
             <svg viewBox="-2 0 500 500" preserveAspectRatio="xMidYMid meet">
               <BarChart
                 positionX={30}
-                positionY={320}
+                positionY={300}
                 width={500}
                 height={300}
                 index={0}
@@ -60,14 +75,14 @@ const Home = () => {
             <PieChart
               list={genderList}
               title="Gender"
-              colorList={color}
+              colorList={colorList}
               handleTabSwitch={handleTabSwitch}
               index={0}
             />
             <PieChart
               list={raceList}
               title="Race"
-              colorList={color}
+              colorList={colorList}
               handleTabSwitch={handleTabSwitch}
               index={1}
             />
