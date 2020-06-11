@@ -6,18 +6,33 @@
  * @example Name: Katty <Icon to update>
  */
 
-import React, { Component } from 'react';
+import React, { useState, useContext } from 'react';
 
-import { Card, TextField } from '@material-ui/core';
+import { Box, TextField } from '@material-ui/core';
+import CreateOutlinedIcon from '@material-ui/icons/CreateOutlined';
+
+import { ProfileContext } from './Profile.jsx';
 
 // editing birthdate component should be a "picker"
 
 function ProfileCard(props) {
+  // pass an object and deconstruct
+  const profileContext = useContext(ProfileContext);
+
   return (
     <React.Fragment>
-      <div className="profile-card">
-        <TextField variant="outlined" type="read-only" />
-      </div>
+      <Box className="profile-card">
+        <TextField
+          variant="outlined"
+          inputProps={{
+            readOnly: Boolean(profileContext.readOnly),
+            disabled: Boolean(profileContext.readOnly),
+          }}
+        />
+        <Box>
+          <CreateOutlinedIcon onClick={profileContext.toggleEdit} />
+        </Box>
+      </Box>
     </React.Fragment>
   );
 }

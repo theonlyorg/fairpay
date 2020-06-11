@@ -74,11 +74,27 @@ body {
   justify-content: space-between;
 }
 
+#profile-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 75%;
+}
+
+#profile-header-text {
+  display: flex;
+  justify-content: center;
+}
+
 .profile-card-display {
   display: flex;
   flex-direction: column;
 }
 
-#profile-card {
+.profile-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   padding-bottom: 2em;
 }
