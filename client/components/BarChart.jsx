@@ -36,7 +36,7 @@ const Bar = props => {
  
   return (
     <g>
-      <rect x={x + 5} y={y + 5} width={width} ref={rectRef} fill="green" fill-opacity="65%"/>
+      <rect x={x + 5} y={y + 5} width={width} ref={rectRef} fill="green" fill-opacity="80%"/>
       <text
         x={x + 40}
         transform="scale(1, -1)"
