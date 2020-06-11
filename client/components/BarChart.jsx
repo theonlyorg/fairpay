@@ -99,7 +99,7 @@ const BarChart = props => {
       y={10}
       textAnchor="middle"
       transform={`scale(1, -1)`}
-      style={{ fontSize: "8px", fontFamily: "roboto" }}
+      style={{ fontSize: "8px", fontFamily: "roboto", fontStyle: "bold" }}
     >
       {capitalize(row[selectedFocus])}
     </text>
