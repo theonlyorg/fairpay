@@ -21,10 +21,12 @@ const DataContextProvider = props => {
   const fetchData = () => {
     // some fetch request
     // setData
-  }
+  };
 
   return (
-    <DataContext.Provider value={{ data, fetchData }}>{props.children}</DataContext.Provider>
+    <DataContext.Provider value={{ data, fetchData }}>
+      {props.children}
+    </DataContext.Provider>
   );
 };
 

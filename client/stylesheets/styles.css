@@ -74,3 +74,20 @@ body {
   background-color: #ff8f00;
   justify-content: space-between;
 }
+
+
+/* PIE CHART */
+.pieChart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  opacity: 0.25;
+  transition: 0.2s ease-in;
+}
+
+.pieChart:hover {
+  opacity: 1;
+  transform: scale(1.25);
+}

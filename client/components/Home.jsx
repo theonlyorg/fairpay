@@ -6,12 +6,13 @@ import UserHeader from './layout/UserHeader.jsx';
 import { UserContext } from './contexts/userContext.js';
 import ComparisonTabs from './layout/ComparisonTabs.jsx';
 import BarChart from './BarChart.jsx';
+// import PieChart from './PieChart';
 
 const Home = () => {
   const { fetchUserData } = useContext(UserContext);
   // const [view, setView] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [selectedFocus, setselectedFocus] = useState("race");
+  const [selectedFocus, setselectedFocus] = useState('race');
 
   // Watch tab switching
   const handleTabSwitch = (e, view) => {
@@ -24,7 +25,6 @@ const Home = () => {
     setLoading(false);
   }, []);
 
-
   return (
     <React.Fragment>
       <UserHeader />
@@ -32,17 +32,18 @@ const Home = () => {
         <h2 className="current_user_header">Loading Data...</h2>
       ) : (
         <div id="tables_div">
-          <Container>         
+          <Container>
             <svg viewBox="-2 0 500 500" preserveAspectRatio="xMidYMid meet">
-              <BarChart 
-                positionX={30} 
-                positionY={320} 
-                width={500} 
-                height={300}    
+              <BarChart
+                positionX={30}
+                positionY={320}
+                width={500}
+                height={300}
                 index={0}
                 selectedFocus={selectedFocus}
               />
             </svg>
+            {/* <PieChart /> */}
           </Container>
         </div>
       )}
