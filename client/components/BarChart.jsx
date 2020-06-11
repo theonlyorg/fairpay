@@ -60,6 +60,7 @@ const BarChart = props => {
   const { positionX, positionY, width, height, selectedFocus = 'race' } = props;
   const { raceList, genderList, ageList } = useContext(UserContext);
   const { user } = useContext(UserContext);  
+  console.log("raceList", raceList)
   console.log("user", user)
 
   // Not using left/right margins currently

@@ -32,9 +32,10 @@ const UserContextProvider = props => {
           companyData,
         } = res;
 
+        console.log("********* race stats ********", raceStats);
         // Set user state
         const { name, linkedin_id, job_title } = currentUser;
-        setUser(state => ({
+        setUser(state => ({ 
           ...state,
           name: name,
           company: linkedin_id,
