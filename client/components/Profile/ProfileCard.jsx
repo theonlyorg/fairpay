@@ -15,7 +15,9 @@ import { Card, TextField } from '@material-ui/core';
 function ProfileCard(props) {
   return (
     <React.Fragment>
-      <TextField variant="outlined" type="read-only" />
+      <div className="profile-card">
+        <TextField variant="outlined" type="read-only" />
+      </div>
     </React.Fragment>
   );
 }

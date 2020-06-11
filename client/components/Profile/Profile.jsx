@@ -18,13 +18,12 @@ const Profile = props => {
   // render a React Fragment with profile cards in it
   const profileCards = [];
   for (let i = 0; i < 5; i++) {
-    profileCards.push(<ProfileCard />);
+    profileCards.push(<ProfileCard key={'card' + i} />);
   }
   return (
     <Container id="profile-container" maxWidth="sm">
       <h1>Hello, world!</h1>
-      <ProfileCard type="name" edit="false" />
-      {profileCards}
+      <div id="profile-card-display">{profileCards}</div>
     </Container>
   );
 };

@@ -42,7 +42,6 @@ body {
   align-items: center;
 }
 
-
 #current_user_name {
   font-weight: 100;
   font-size: 2.5rem;
@@ -73,4 +72,13 @@ body {
 #appBar {
   background-color: #ff8f00;
   justify-content: space-between;
+}
+
+.profile-card-display {
+  display: flex;
+  flex-direction: column;
+}
+
+#profile-card {
+  padding-bottom: 2em;
 }
