@@ -14,7 +14,7 @@ const Home = () => {
   );
   const [view, setView] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [selectedFocus, setSelectedFocus] = useState(0);
+  const [selectedFocus, setSelectedFocus] = useState("race");
   const [colorList, setColorList] = useState([
     '#4e79a7',
     '#f28e2c',
@@ -47,38 +47,44 @@ const Home = () => {
       ) : (
         <div id="tables_div">
           <Container>
-            <svg viewBox="-2 0 500 500" preserveAspectRatio="xMidYMid meet">
+            <svg viewBox="-2 0 500 330" preserveAspectRatio="xMidYMid meet">
               <BarChart 
                 positionX={30} 
                 positionY={300} 
-                width={500} 
-                height={300}    
+                totalWidth={300} 
+                totalHeight={300}    
                 index={0} 
                 selectedFocus={selectedFocus}
                 colorLisst={colorList}
               />
-            </svg>
             <PieChart
+              positionX={330} 
+              positionY={0} 
               list={genderList}
               title="Gender"
               colorList={colorList}
-              handleTabSwitch={handleTabSwitch}
+              // handleTabSwitch={handleFocusSwitch}
               index={0}
             />
             <PieChart
+              positionX={330} 
+              positionY={100} 
               list={raceList}
               title="Race"
               colorList={colorList}
-              handleTabSwitch={handleTabSwitch}
+              // handleTabSwitch={handleFocusSwitch}
               index={1}
             />
             <PieChart
+              positionX={330} 
+              positionY={150} 
               list={ageList}
               title="Age"
               colorList={colorList}
-              handleTabSwitch={handleTabSwitch}
+              // handleTabSwitch={handleFocusSwitch}
               index={2}
             />
+            </svg>
           </Container>
         </div>
       )}
