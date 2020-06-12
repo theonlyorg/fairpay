@@ -4,17 +4,13 @@ import { UserContext } from './contexts/userContext.js';
 import BarChart from './BarChart.jsx';
 import PieChart from './PieChart';
 import UserHeader from './layout/UserHeader.jsx';
-// import ComparisonTabs from './layout/ComparisonTabs.jsx';
-// import CompanyComparison from './CompanyComparison.jsx';
-// import IndividualComparison from './IndividualComparison.jsx';
 
 const Home = () => {
   const { fetchUserData, genderList, raceList, ageList } = useContext(
     UserContext
   );
-  const [view, setView] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [selectedFocus, setSelectedFocus] = useState(0);
+  const [selectedFocus, setSelectedFocus] = useState('race');
   const [colorList, setColorList] = useState([
     '#4e79a7',
     '#f28e2c',
@@ -27,11 +23,6 @@ const Home = () => {
     '#9c755f',
     '#bab0ab',
   ]);
-
-  // Watch tab switching
-  const handleTabSwitch = (e, view) => {
-    setSelectedFocus(view);
-  };
 
   // Fetch user data on mount
   useEffect(() => {
@@ -47,43 +38,54 @@ const Home = () => {
       ) : (
         <div id="tables_div">
           <Container>
-            <svg viewBox="-2 0 500 500" preserveAspectRatio="xMidYMid meet">
+            <svg viewBox="-2 0 700 350" preserveAspectRatio="xMidYMid meet">
               <BarChart
-                positionX={30}
+                positionX={50}
                 positionY={300}
                 width={500}
                 height={300}
                 index={0}
                 selectedFocus={selectedFocus}
-                colorLisst={colorList}
+                colorList={colorList}
+              />
+              <PieChart
+                x={500}
+                y={0}
+                list={genderList}
+                title="Gender"
+                colorList={colorList}
+                setSelectedFocus={setSelectedFocus}
+                index="gender"
+              />
+
+              <PieChart
+                x={500}
+                y={100}
+                list={raceList}
+                title="Race"
+                colorList={colorList}
+                setSelectedFocus={setSelectedFocus}
+                index="race"
+              />
+              <PieChart
+                x={500}
+                y={200}
+                list={ageList}
+                title="Age"
+                colorList={colorList}
+                setSelectedFocus={setSelectedFocus}
+                index="age"
               />
             </svg>
-            <PieChart
-              list={genderList}
-              title="Gender"
-              colorList={colorList}
-              handleTabSwitch={handleTabSwitch}
-              index={0}
-            />
-            <PieChart
-              list={raceList}
-              title="Race"
-              colorList={colorList}
-              handleTabSwitch={handleTabSwitch}
-              index={1}
-            />
-            <PieChart
-              list={ageList}
-              title="Age"
-              colorList={colorList}
-              handleTabSwitch={handleTabSwitch}
-              index={2}
-            />
           </Container>
         </div>
       )}
     </React.Fragment>
   );
+};
+
+const chartStyle = {
+  display: 'flex',
 };
 
 export default Home;
