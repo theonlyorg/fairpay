@@ -4,17 +4,13 @@ import { UserContext } from './contexts/userContext.js';
 import BarChart from './BarChart.jsx';
 import PieChart from './PieChart';
 import UserHeader from './layout/UserHeader.jsx';
-// import ComparisonTabs from './layout/ComparisonTabs.jsx';
-// import CompanyComparison from './CompanyComparison.jsx';
-// import IndividualComparison from './IndividualComparison.jsx';
 
 const Home = () => {
   const { fetchUserData, genderList, raceList, ageList } = useContext(
     UserContext
   );
-  const [view, setView] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [selectedFocus, setSelectedFocus] = useState("race");
+  const [selectedFocus, setSelectedFocus] = useState('race');
   const [colorList, setColorList] = useState([
     '#4e79a7',
     '#f28e2c',
@@ -27,11 +23,6 @@ const Home = () => {
     '#9c755f',
     '#bab0ab',
   ]);
-
-  // Watch focus switching
-  const handleFocusSwitch = (e, view) => {
-    setSelectedFocus(view);
-  };
 
   // Fetch user data on mount
   useEffect(() => {
@@ -47,49 +38,54 @@ const Home = () => {
       ) : (
         <div id="tables_div">
           <Container>
-            <svg viewBox="-2 0 500 330" preserveAspectRatio="xMidYMid meet">
-              <BarChart 
-                positionX={30} 
-                positionY={300} 
-                totalWidth={300} 
-                totalHeight={300}    
-                index={0} 
+            <svg viewBox="-2 0 700 350" preserveAspectRatio="xMidYMid meet">
+              <BarChart
+                positionX={30}
+                positionY={300}
+                totalWidth={300}
+                totalHeight={300}
+                index={0}
                 selectedFocus={selectedFocus}
-                colorLisst={colorList}
+                colorList={colorList}
               />
-            <PieChart
-              positionX={330} 
-              positionY={0} 
-              list={genderList}
-              title="Gender"
-              colorList={colorList}
-              // handleTabSwitch={handleFocusSwitch}
-              index={0}
-            />
-            <PieChart
-              positionX={330} 
-              positionY={100} 
-              list={raceList}
-              title="Race"
-              colorList={colorList}
-              // handleTabSwitch={handleFocusSwitch}
-              index={1}
-            />
-            <PieChart
-              positionX={330} 
-              positionY={150} 
-              list={ageList}
-              title="Age"
-              colorList={colorList}
-              // handleTabSwitch={handleFocusSwitch}
-              index={2}
-            />
+              <PieChart
+                x={500}
+                y={0}
+                list={genderList}
+                title="Gender"
+                colorList={colorList}
+                setSelectedFocus={setSelectedFocus}
+                index="gender"
+              />
+
+              <PieChart
+                x={500}
+                y={100}
+                list={raceList}
+                title="Race"
+                colorList={colorList}
+                setSelectedFocus={setSelectedFocus}
+                index="race"
+              />
+              <PieChart
+                x={500}
+                y={200}
+                list={ageList}
+                title="Age"
+                colorList={colorList}
+                setSelectedFocus={setSelectedFocus}
+                index="age"
+              />
             </svg>
           </Container>
         </div>
       )}
     </React.Fragment>
   );
+};
+
+const chartStyle = {
+  display: 'flex',
 };
 
 export default Home;
