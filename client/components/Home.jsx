@@ -55,7 +55,7 @@ const Home = () => {
                 totalHeight={300}    
                 index={0} 
                 selectedFocus={selectedFocus}
-                colorLisst={colorList}
+                colorList={colorList}
               />
             <PieChart
               positionX={330} 
