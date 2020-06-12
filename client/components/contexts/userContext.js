@@ -51,7 +51,8 @@ const UserContextProvider = props => {
         setAge(ageStats);
         setAggregate(jobStats);
         setCompany(companyData);
-      });
+      })
+      .catch(err => console.log('ERROR in userContext', err));
   };
 
   return (
