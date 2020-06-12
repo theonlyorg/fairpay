@@ -18,19 +18,24 @@ import { ProfileContext } from './Profile.jsx';
 function ProfileCard(props) {
   // pass an object and deconstruct
   const profileContext = useContext(ProfileContext);
+  console.log(props);
+  const inputProps = {
+    readOnly: Boolean(props.readOnly),
+    disabled: Boolean(props.readOnly),
+    defaultValue: props.value,
+  };
 
   return (
     <React.Fragment>
       <Box className="profile-card">
+        <Box className="profile-label">{props.label}</Box>
         <TextField
           variant="outlined"
-          inputProps={{
-            readOnly: Boolean(profileContext.readOnly),
-            disabled: Boolean(profileContext.readOnly),
-          }}
+          inputProps={inputProps}
+          className="profile-field"
         />
         <Box>
-          <CreateOutlinedIcon onClick={profileContext.toggleEdit} />
+          <CreateOutlinedIcon />
         </Box>
       </Box>
     </React.Fragment>

@@ -92,16 +92,20 @@ body {
   /* justify-content: space-between; */
 }
 
+/* Profile */
+
 #profile-container {
   display: flex;
   justify-content: center;
   flex-direction: column;
   width: 75%;
+  background-color: white;
 }
 
 #profile-header-text {
   display: flex;
   justify-content: center;
+  padding-bottom: 1.5em;
 }
 
 .profile-card-display {
@@ -115,6 +119,14 @@ body {
   justify-content: center;
   align-items: center;
   padding-bottom: 2em;
+}
+
+.profile-label {
+  padding-right: 2em;
+}
+
+.profile-field {
+  padding-right: 1em;
 }
 
 /* PIE CHART */

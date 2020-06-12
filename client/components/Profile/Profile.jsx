@@ -6,7 +6,7 @@
  */
 
 // import dependencies
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, Component } from 'react';
 
 // import custom React Components
 import ProfileCard from './ProfileCard.jsx';
@@ -17,25 +17,7 @@ import { Container } from '@material-ui/core';
 export const ProfileContext = React.createContext({});
 
 const Profile = props => {
-  const defaultState = {
-    name: true,
-  };
-
-  const [readOnly, setReadOnly] = useState(defaultState);
-
-  // const profileItems = {
-  //   name: { label: 'Name: ', value: 'Katty Polyak', readOnly: true },
-  //   email: {},
-  // };
-  // pass in the id of the item that was clicked so that the appropriate box can be to set readOnly true/false
-  // const toggleEdit = () => {
-  //   console.log(readOnly.name);
-
-  //   setReadOnly({
-  //     ...readOnly,
-  //     name: !readOnly.name,
-  //   });
-  // };
+  getUserData();
 
   const profileItems = {
     name: { label: 'Name: ', value: 'Katty Polyak', readOnly: true },
@@ -44,10 +26,10 @@ const Profile = props => {
       value: 'Katty.Polyak@gmail.com',
       readOnly: false,
     },
-    race: { label: 'Race: ', value: 'White', readOnly: false },
-    gender: { label: 'Gender: ', value: 'White', readOnly: false },
-    lgbtq: { label: 'Identify as LGBTQ+?: ', value: 'no', readOnly: false },
-    age: { label: 'Age: ', value: '30', readOnly: false },
+    race: { label: 'Race: ', value: rawProfileItems.race, readOnly: true },
+    gender: { label: 'Gender: ', value: 'White', readOnly: true },
+    lgbtq: { label: 'LGBTQ+?: ', value: 'no', readOnly: true },
+    age: { label: 'Age: ', value: '30', readOnly: true },
   };
   const profileKeys = Object.keys(profileItems);
   // pass in the id of the item that was clicked so that the appropriate box can be to set readOnly true/false
@@ -60,24 +42,42 @@ const Profile = props => {
     });
   };
 
+  function getUserData() {
+    fetch('/api/profile', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        const { rawProfileItems } = data;
+        console.log(data);
+      })
+      .catch(err => console.log(err));
+  }
+
   // render a React Fragment with profile cards in it
 
   const profileCards = [];
   for (let i = 0; i < profileKeys.length; i++) {
-    profileCards.push(<ProfileCard key={profileKeys[i]} />);
+    const id = profileKeys[i];
+    profileCards.push(
+      <ProfileCard
+        key={id}
+        id={id}
+        label={profileItems[id].label}
+        value={profileItems[id].value}
+        readOnly={profileItems[id].readOnly}
+      />
+    );
   }
   return (
     <Container id="profile-container" maxWidth="xl">
       <div id="profile-header-text">
         <h1>User Profile</h1>
       </div>
-      <div id="profile-card-display">
-        <ProfileContext.Provider
-          value={{ ...readOnly, toggleEdit: toggleEdit }}
-        >
-          {profileCards}
-        </ProfileContext.Provider>
-      </div>
+      <div id="profile-card-display">{profileCards}</div>
     </Container>
   );
 };
