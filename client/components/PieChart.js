@@ -33,7 +33,6 @@ const PieChart = ({
     const g = svg
       .append('g')
       .attr('transform', `translate(${radius}, ${radius})`)
-      ;
 
     // Set color scale
     const color = d3.scaleOrdinal(colorList);

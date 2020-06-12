@@ -40,10 +40,10 @@ const Home = () => {
           <Container>
             <svg viewBox="-2 0 700 350" preserveAspectRatio="xMidYMid meet">
               <BarChart
-                positionX={50}
+                positionX={30}
                 positionY={300}
-                width={500}
-                height={300}
+                totalWidth={300}
+                totalHeight={300}
                 index={0}
                 selectedFocus={selectedFocus}
                 colorList={colorList}
