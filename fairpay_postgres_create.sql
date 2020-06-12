@@ -68,7 +68,8 @@ CREATE TABLE public.company
   "region" varchar,
   "zipcode" varchar,
   CONSTRAINT "company_pk" PRIMARY KEY ("_id"),
-  CONSTRAINT "unique_linkedin_id" UNIQUE ("linkedin_id")
+  CONSTRAINT "unique_linkedin_id" UNIQUE ("linkedin_id"),
+  CONSTRAINT "name_" UNIQUE ("name")
 )
 WITH (
   OIDS=FALSE
