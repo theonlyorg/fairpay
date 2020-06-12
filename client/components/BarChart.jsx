@@ -36,15 +36,15 @@ const Bar = props => {
   return (
     <g>
       <rect
-        x={x + 5}
-        y={y + 5}
+        x={x}
+        y={y}
         width={width}
         ref={rectRef}
         fill="green"
         fill-opacity="80%"
       />
       <text
-        x={x + 40}
+        x={x + width/2}
         transform="scale(1, -1)"
         fill="white"
         textAnchor="middle"
@@ -62,14 +62,14 @@ const Bar = props => {
 /* **********************************************************************************/
 
 const BarChart = props => {
-  const { positionX, positionY, width, height, selectedFocus = 'race' } = props;
+  const { positionX, positionY, totalWidth, totalHeight, selectedFocus } = props;
   const { raceList, genderList, ageList } = useContext(UserContext);
   const { user } = useContext(UserContext);
   // console.log('user', user);
 
   // Not using left/right margins currently
   const margin = { top: 20, right: 20, bottom: 20, left: 20 };
-  const barChartHeight = height - margin.top - margin.bottom;
+  const barChartHeight = totalHeight - margin.top - margin.bottom;
 
   // Choose a list based on current user selection
   let selectedList = null;
@@ -77,6 +77,10 @@ const BarChart = props => {
   else if (selectedFocus === 'age') selectedList = ageList;
   else selectedList = raceList;
   const numCategories = selectedList.length;
+  const barWidth = totalWidth / numCategories;
+  const barMargin = 10;
+  console.log("barWidth", barWidth)
+  
 
   // Returns a new continuous scale that maps from space given in domain to space given in range
   // max takes an array, and optional accessor function that works like map
@@ -88,20 +92,20 @@ const BarChart = props => {
   const allBars = selectedList.map((row, i) => (
     <Bar
       key={i}
-      x={i * 80}
+      x={i * barWidth}
       y={0}
-      width={75}
+      width={barWidth * 0.93}
       height={barChartHeight - barScale(row.avg_salary)}
       value={row.avg_salary}
     />
   ));
-
+ 
   // Generate Category Labels as an array of svg text elems
   const categoriesLabel = selectedList.map((row, i) => (
     <text
       fill="white"
       key={i}
-      x={i * 80 + 40}
+      x={i * barWidth + barWidth*0.5}
       y={10}
       textAnchor="middle"
       transform={`scale(1, -1)`}
