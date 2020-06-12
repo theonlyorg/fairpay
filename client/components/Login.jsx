@@ -5,12 +5,12 @@ function Login(props) {
   //   console.log("props vs index", props.value, props.index);
 
   return (
-    <div>
-      <h1>Be an agent of change</h1>
-      <h2>
+    <div className="beAgent"> 
+      <h1>Be an agent of change...</h1>
+      <h3 className="introText">
         Securely submit your salary information to understand if you or your
         coworkers are being discriminated against
-      </h2>
+      </h3>
       {/* TODO: link to LinkedIn OAuth*/}
       <a href="/auth/linkedin">
         <img
