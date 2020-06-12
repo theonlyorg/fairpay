@@ -1,13 +1,21 @@
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 
-const PieChart = ({ list, colorList, title, handleTabSwitch, index }) => {
-  // Get assigned data
+const PieChart = ({
+  list,
+  colorList,
+  title,
+  setSelectedFocus,
+  index,
+  x,
+  y,
+}) => {
+  // Convert data to percentages with helper function
   const data = getPercentages(list, title.toLowerCase());
 
+  // Create references
   const ref = useRef(null);
 
-  // Rerender pie chart when data udpates
   useEffect(() => {
     // Create svg element
     const svgWidth = 50;
@@ -18,19 +26,21 @@ const PieChart = ({ list, colorList, title, handleTabSwitch, index }) => {
     const svg = d3
       .select(ref.current)
       .attr('width', svgWidth)
-      .attr('height', svgHeight);
+      .attr('height', svgHeight)
+      .attr('x', x)
+      .attr('y', y);
 
     const g = svg
       .append('g')
-      .attr('transform', `translate(${radius}, ${radius})`);
+      .attr('transform', `translate(${radius}, ${radius})`)
 
     // Set color scale
     const color = d3.scaleOrdinal(colorList);
 
-    // Create function to target percentage value only
+    // Create pie chart and target percentages
     const pie = d3.pie().value(d => d.percentage);
 
-    // Set radius?
+    // Build arcs
     const path = d3.arc().outerRadius(radius).innerRadius(0);
 
     // Enter data
@@ -43,15 +53,10 @@ const PieChart = ({ list, colorList, title, handleTabSwitch, index }) => {
   }, [data]);
 
   const handleClick = e => {
-    handleTabSwitch(index);
+    setSelectedFocus(index);
   };
 
-  return (
-    <div className="pieChart" onClick={handleClick}>
-      <svg ref={ref}></svg>
-      <h3>{title}</h3>
-    </div>
-  );
+  return <svg className="pieChart" onClick={handleClick} ref={ref}></svg>;
 };
 
 /**

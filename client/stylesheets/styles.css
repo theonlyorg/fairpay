@@ -14,9 +14,8 @@ body {
   /* background-color: #ffffff; */
   /* background-color: #303030; */
   /* color: #424242; */
-  background-image: 
-  url('/client/images/LA4.jpg'),
-  linear-gradient(rgba(255,255,255,0.3),rgba(255,255,255,0.3));
+  background-image: url('/client/images/LA4.jpg'),
+    linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3));
   /* linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)); */
   background-blend-mode: overlay;
   background-size: cover;
@@ -110,7 +109,6 @@ body {
   /* justify-content: space-between; */
 }
 
-
 /* PIE CHART */
 .pieChart {
   display: flex;
@@ -118,7 +116,7 @@ body {
   justify-content: center;
   align-items: center;
   width: 300px;
-  opacity: 0.25;
+  opacity: 0.75;
   transition: 0.2s ease-in;
 }
 
