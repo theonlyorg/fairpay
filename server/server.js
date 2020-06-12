@@ -33,7 +33,9 @@ app.use('/auth', authRouter);
 
 if (process.env.NODE_ENV === 'production') {
   app.use('/build', express.static(path.resolve(__dirname, '../build')));
-  app.get('/', (req, res) => res.status(200).sendFile(path.resolve(__dirname, '../index.html')));
+  app.get('/', (req, res) =>
+    res.status(200).sendFile(path.resolve(__dirname, '../index.html'))
+  );
 }
 
 app.get('/api/test', fairpayController.getUser, (req, res) => {
@@ -42,6 +44,11 @@ app.get('/api/test', fairpayController.getUser, (req, res) => {
 
 // Returns all user data
 app.get('/api/user', fairpayController.getUser, (req, res) => {
+  res.status(200).json(res.locals.userData);
+});
+
+app.get('/api/profile', fairpayController.getUserProfile, (req, res) => {
+  console.log('returning from /api/profile');
   res.status(200).json(res.locals.userData);
 });
 
@@ -90,17 +97,17 @@ app.use(
 
 // Serve static files in production mode only...
 if (process.env.NODE_ENV === 'production') {
-  app.use('/build', express.static(path.resolve(__dirname, '../build/')))
+  app.use('/build', express.static(path.resolve(__dirname, '../build/')));
 
   // Home endpoint
   app.get('/', (req, res) => {
-    res.sendFile(__dirname, '../index.html')
-  })
+    res.sendFile(__dirname, '../index.html');
+  });
 
   // Handle other redirections made by the server
   app.get('*', (req, res) => {
-    res.sendFile(__dirname, '../index.html')
-  })
+    res.sendFile(__dirname, '../index.html');
+  });
 }
 
 // route error handler
