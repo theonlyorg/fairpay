@@ -26,8 +26,8 @@ const Profile = props => {
       value: 'Katty.Polyak@gmail.com',
       readOnly: false,
     },
-    race: { label: 'Race: ', value: rawProfileItems.race, readOnly: true },
-    gender: { label: 'Gender: ', value: 'White', readOnly: true },
+    race: { label: 'Race: ', value: 'White', readOnly: true },
+    gender: { label: 'Gender: ', value: 'Female', readOnly: true },
     lgbtq: { label: 'LGBTQ+?: ', value: 'no', readOnly: true },
     age: { label: 'Age: ', value: '30', readOnly: true },
   };
