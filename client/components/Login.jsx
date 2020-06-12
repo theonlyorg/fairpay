@@ -1,9 +1,9 @@
 import React from 'react';
 
 const Login = () => (
-  <div>
+  <div class="beAgent">
     <h1>Be an agent of change</h1>
-    <h2>
+    <h2 class="introText">
       Securely submit your salary information to understand if you or your
       coworkers are being discriminated against
     </h2>

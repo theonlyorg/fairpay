@@ -38,7 +38,7 @@ const Home = () => {
       ) : (
         <div id="tables_div">
           <Container>
-            <svg viewBox="-2 0 700 350" preserveAspectRatio="xMidYMid meet">
+            <svg viewBox="-2 0 500 350" preserveAspectRatio="xMidYMid meet">
               <BarChart
                 positionX={30}
                 positionY={300}
@@ -49,8 +49,8 @@ const Home = () => {
                 colorList={colorList}
               />
               <PieChart
-                x={500}
-                y={0}
+                x={400}
+                y={60}
                 list={genderList}
                 title="Gender"
                 colorList={colorList}
@@ -59,8 +59,8 @@ const Home = () => {
               />
 
               <PieChart
-                x={500}
-                y={100}
+                x={400}
+                y={150}
                 list={raceList}
                 title="Race"
                 colorList={colorList}
@@ -68,8 +68,8 @@ const Home = () => {
                 index="race"
               />
               <PieChart
-                x={500}
-                y={200}
+                x={400}
+                y={240}
                 list={ageList}
                 title="Age"
                 colorList={colorList}
