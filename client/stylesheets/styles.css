@@ -63,7 +63,7 @@ body {
 .beAgent {
   margin-top: 5em;
   margin-left: 5em;
-  width: 400px; 
+  width: 400px;
   /* font-weight: 100; */
   /* font-size: 2.5rem; */
 }
@@ -107,6 +107,43 @@ body {
   /* background-color: #ff8f00; */
   background-color: rgb(121, 82, 179);
   /* justify-content: space-between; */
+}
+
+/* Profile */
+
+#profile-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 75%;
+  background-color: white;
+}
+
+#profile-header-text {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1.5em;
+}
+
+.profile-card-display {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2em;
+}
+
+.profile-label {
+  padding-right: 2em;
+}
+
+.profile-field {
+  padding-right: 1em;
 }
 
 /* PIE CHART */

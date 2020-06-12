@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './components/Home.jsx';
 import Login from './components/Login.jsx';
 import GetStarted from './components/GetStarted.jsx';
+import Profile from './components/Profile/Profile.jsx';
 import Header from './components/layout/Header.jsx';
 import './stylesheets/styles.css';
 import UserContextProvider from './components/contexts/userContext';
@@ -15,6 +16,7 @@ const App = () => {
         <UserContextProvider>
           <Route exact path="/getstarted" component={GetStarted} />
           <Route exact path="/home" component={Home} />
+          <Route exact path="/profile" component={Profile} />
           <Route exact path="/" component={Login} />
         </UserContextProvider>
       </Switch>
