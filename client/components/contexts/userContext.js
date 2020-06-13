@@ -20,6 +20,11 @@ const UserContextProvider = props => {
   // Company wide state
   const [companyList, setCompany] = useState([]);
 
+  // Percentages for piecharts
+  const [agePercent, setAgePercent] = useState([]);
+  const [racePercent, setRacePercent] = useState([]);
+  const [genderPercent, setGenderPercent] = useState([]);
+
   const fetchUserData = () => {
     fetch('/api/company')
       .then(res => res.json())
@@ -34,7 +39,11 @@ const UserContextProvider = props => {
           companyData,
         } = res;
 
-        console.log("********* race stats ********", raceStats);
+        // Get perecentages
+        setAgePercent(getPercentages(ageStats, 'age'));
+        setRacePercent(getPercentages(raceStats, 'race'));
+        setGenderPercent(getPercentages(genderStats, 'gender'));
+
         // Set user state
         const { name, linkedin_id, job_title, base_salary } = currentUser;
         setUser(state => ({
@@ -65,11 +74,40 @@ const UserContextProvider = props => {
         ageList,
         aggregateList,
         companyList,
+        agePercent,
+        genderPercent,
+        racePercent,
       }}
     >
       {props.children}
     </UserContext.Provider>
   );
 };
+
+/**
+ * Helper function to get percentages from list. Returns an array of objects
+ * @param {Array} array The category list
+ * @param {string} keyword 'gender', 'race', 'age'
+ * @return {Array} Returns an array of objects with the key value pairs: { category: 'Male', percentage: 53 }
+ */
+function getPercentages(array, keyword) {
+  const output = [];
+
+  // Get total to calculate final percentage
+  let total = 0;
+  for (let obj of array) {
+    total += parseInt(obj.count);
+  }
+
+  // Create array of percentages
+  for (let obj of array) {
+    output.push({
+      category: obj[keyword],
+      percentage: (parseInt(obj.count) / total) * 100,
+    });
+  }
+
+  return output;
+}
 
 export default UserContextProvider;

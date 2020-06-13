@@ -34,7 +34,6 @@ function GetStarted(props) {
   // updates state, checks for validation errors, and updates disable status of button
   function handleChange(event) {
     const { name, value } = event.target;
-    console.log('change in: ', name, value);
     setInputs({ ...inputs, [name]: value });
     handleError(name, value);
     determineIfStepComplete();
@@ -42,7 +41,6 @@ function GetStarted(props) {
 
   function handleError(name, value) {
     // for every change in the input, we're going to check whether that passes our validation requirements
-    console.log('error name is:', name);
     let error;
     const numberFields = [
       'annualIncome',
@@ -73,7 +71,6 @@ function GetStarted(props) {
     let isIncomplete = false;
     let reqQuestions;
 
-    console.log('step is: ', step);
     // determine required questions for a given step
     if (
       step === 'income' &&
@@ -108,7 +105,6 @@ function GetStarted(props) {
           !inputs.hasOwnProperty(reqQuestions[i]) ||
           inputs[reqQuestions[i]].trim() === ''
         ) {
-          console.log('no own property');
           isIncomplete = true;
           break;
         }
@@ -125,12 +121,10 @@ function GetStarted(props) {
   function submitForm(e) {
     e.preventDefault();
     postUserUpdates();
-    console.log('in the submit form');
     history.push('/home');
   }
 
   function postUserUpdates() {
-    console.log(inputs);
     let data = {
       job_title: inputs.title,
       company_name: inputs.company,
