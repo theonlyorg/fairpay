@@ -124,6 +124,7 @@ app.use((err, req, res, next) => {
   };
   // const errorObj = Object.assign({}, defaultErr);
   const errorObj = Object.assign(defaultErr, err);
+  console.log(errorObj);
   return res.status(errorObj.status).json({ message: 'Internal Server Error' });
 });
 
