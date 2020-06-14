@@ -147,7 +147,7 @@ body {
 }
 
 /* PIE CHART */
-.pieChart {
+/* .pieChart {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -160,4 +160,4 @@ body {
 .pieChart:hover {
   opacity: 1;
   transform: scale(1.25);
-}
+} */
