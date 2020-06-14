@@ -6,25 +6,25 @@ import PieChart from './PieChart';
 import UserHeader from './layout/UserHeader.jsx';
 
 // choose chart color scheme here
-import { schemeSet1 as colorScheme } from "d3";
+import { schemeSet1 as colorScheme, schemeGreys } from 'd3';
 // import { schemePaired as colorScheme } from "d3";
 
-import { scaleOrdinal } from "d3-scale";
+import { scaleOrdinal } from 'd3-scale';
 
 const Home = () => {
-    const { fetchUserData, agePercent, racePercent, genderPercent } = useContext(UserContext);
-    const [loading, setLoading] = useState(true);
-    const [selectedFocus, setSelectedFocus] = useState('race');
-    const [selectedHover, setSelectedHover] = useState('race');
-    const colorScale = scaleOrdinal(colorScheme);
-    
-    // console.log("Home -> genderPercent", genderPercent)
-    // console.log("Home -> racePercent", racePercent)
-    // console.log("Home -> agePercent", agePercent)
-    // function setSelectedFocus() {
-      
-    // }
-``
+  const { fetchUserData, agePercent, racePercent, genderPercent } = useContext(
+    UserContext
+  );
+  const [loading, setLoading] = useState(true);
+  const [selectedFocus, setSelectedFocus] = useState('race');
+  // const [selectedHover, setSelectedHover] = useState('race');
+  const colorScale = scaleOrdinal(colorScheme);
+  const grayScale = scaleOrdinal(schemeGreys[5]);
+
+  // console.log("Home -> genderPercent", genderPercent)
+  // console.log("Home -> racePercent", racePercent)
+  // console.log("Home -> agePercent", agePercent)
+
   // Temporarily hardcoded data
   const ageData = [
     { category: '18 - 35', percentage: 54.54545454545454 },
@@ -33,9 +33,8 @@ const Home = () => {
   ];
 
   const genderData = [
-    { category: '18 - 35', percentage: 54.54545454545454 },
-    { category: '36 - 50', percentage: 18.181818181818183 },
-    { category: '51+', percentage: 27.27272727272727 },
+    { category: 'Female', percentage: 45.45454545454545 },
+    { category: 'Male', percentage: 54.54545454545454 },
   ];
 
   const raceData = [
@@ -92,6 +91,9 @@ const Home = () => {
                 selectedFocus={selectedFocus}
                 colorScale={colorScale}
               />
+              <text x={410} y={10} fontSize="70%">
+                Race
+              </text>
               <PieChart
                 x={390}
                 y={20}
@@ -99,39 +101,45 @@ const Home = () => {
                 data={raceData}
                 title="Race"
                 colorScale={colorScale}
-                localFocus={'race'}
-                selectedHover={selectedHover}
-                setSelectedHover={setSelectedHover}
+                grayScale={grayScale}
+                // selectedHover={selectedHover}
+                // setSelectedHover={setSelectedHover}
                 selectedFocus={selectedFocus}
                 setSelectedFocus={setSelectedFocus}
                 index="race"
                 active={selectedFocus === 'race'}
               />
+              <text x={405} y={112} fontSize="70%">
+                Gender
+              </text>
               <PieChart
                 x={390}
-                y={125} 
+                y={125}
                 width={70}
                 data={genderData}
                 title="Gender"
                 colorScale={colorScale}
-                localFocus={'gender'}
-                selectedHover={selectedHover}
-                setSelectedHover={setSelectedHover}
+                grayScale={grayScale}
+                // selectedHover={selectedHover}
+                // setSelectedHover={setSelectedHover}
                 selectedFocus={selectedFocus}
                 setSelectedFocus={setSelectedFocus}
                 index="gender"
                 active={selectedFocus === 'gender'}
               />
+              <text x={412} y={220} fontSize="70%">
+                Age
+              </text>
               <PieChart
                 x={390}
                 y={230}
                 width={70}
                 data={ageData}
                 title="Age"
-                localFocus={'age'}
                 colorScale={colorScale}
-                selectedHover={selectedHover}
-                setSelectedHover={setSelectedHover}
+                grayScale={grayScale}
+                // selectedHover={selectedHover}
+                // setSelectedHover={setSelectedHover}
                 selectedFocus={selectedFocus}
                 setSelectedFocus={setSelectedFocus}
                 index="age"
