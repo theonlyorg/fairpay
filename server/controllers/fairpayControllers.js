@@ -13,8 +13,6 @@ fairpayController.getUserProfile = (req, res, next) => {
   console.log('in fairpayController');
   let currentUserId = req.cookies.userId;
 
-  console.log(req.cookies.userId);
-
   let queryString = `
     SELECT 
       u.name,
@@ -30,7 +28,6 @@ fairpayController.getUserProfile = (req, res, next) => {
     ON s._id = u.salary_id
     WHERE u.linkedin_user_id = $1;`;
   let params = [currentUserId];
-  console.log('about to make query');
   db.query(queryString, params, (err, response) => {
     if (err) {
       return next({
@@ -50,19 +47,23 @@ fairpayController.getUserProfile = (req, res, next) => {
 
 // GET /api/user: responds with all user data
 fairpayController.getUser = (req, res, next) => {
-  console.log('in fairpayController');
+  console.log('in controller: get user');
   let currentUserId;
 
-  console.log(req.cookies.userId);
   if (req.cookies.userId) {
     // Coming from passport
-    console.log('passport -> get user');
     currentUserId = req.cookies.userId;
   } else {
     // Coming from /api/user ### where is this coming from???
-    console.log('/api/user => passport');
-    currentUserId = req.body.linkedin_user_id;
+
+    // ============================== //
+    // ======= LOGIN BUG HERE ======= //
+    // ============================== //
+    // currentUserId = req.body.linkedin_user_id;
+
+    currentUserId = req.user.id;
   }
+  
   let queryString = `
     SELECT *, c.linkedin_id AS company_linkedin_id, c.name AS company_name, c.city AS company_city, c.zipcode AS company_zipcode
     FROM public.users AS u
@@ -72,7 +73,6 @@ fairpayController.getUser = (req, res, next) => {
     ON u.salary_id = s._id
     WHERE u.linkedin_user_id = $1;`;
   let params = [currentUserId];
-  console.log('about to make query');
   db.query(queryString, params, (err, response) => {
     if (err) {
       return next({
@@ -151,7 +151,6 @@ fairpayController.onboardUser = async (req, res, next) => {
 fairpayController.getCurrentUser = (req, res, next) => {
   console.log('controller: get current user');
   const linkedin_user_id = req.cookies.userId;
-  console.log(linkedin_user_id);
   let queryString = `
     SELECT 
       u.name, s.job_title, c.linkedin_id, c.name as company_name, u.sexuality, u.age, u.gender, 

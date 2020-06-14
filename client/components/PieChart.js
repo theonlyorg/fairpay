@@ -1,19 +1,16 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 
 const PieChart = ({
-  list,
+  data,
   colorList,
   title,
   setSelectedFocus,
   index,
   x,
   y,
+  active,
 }) => {
-  // Convert data to percentages with helper function
-  const data = getPercentages(list, title.toLowerCase());
-
-  // Create references
   const ref = useRef(null);
 
   useEffect(() => {
@@ -21,6 +18,9 @@ const PieChart = ({
     const svgWidth = 50;
     const svgHeight = 50;
     const radius = Math.min(svgWidth, svgHeight) / 2;
+
+    // Set colors
+    const color = d3.scaleOrdinal(colorList);
 
     // Set svg dimensions
     const svg = d3
@@ -30,14 +30,12 @@ const PieChart = ({
       .attr('x', x)
       .attr('y', y);
 
+    // Center the g element appended to the svg canvas
     const g = svg
       .append('g')
-      .attr('transform', `translate(${radius}, ${radius})`)
+      .attr('transform', `translate(${radius}, ${radius})`);
 
-    // Set color scale
-    const color = d3.scaleOrdinal(colorList);
-
-    // Create pie chart and target percentages
+    // Create pie chart and target percentages for values
     const pie = d3.pie().value(d => d.percentage);
 
     // Build arcs
@@ -50,38 +48,27 @@ const PieChart = ({
       .append('path')
       .attr('d', path)
       .attr('fill', d => color(d.data.percentage));
-  }, [data]);
+  }, []);
 
   const handleClick = e => {
     setSelectedFocus(index);
   };
 
-  return <svg className="pieChart" onClick={handleClick} ref={ref}></svg>;
+  return active ? (
+    <svg
+      style={{ opacity: 1.0 }}
+      className="pieChart"
+      onClick={handleClick}
+      ref={ref}
+    ></svg>
+  ) : (
+    <svg
+      style={{ opacity: 0.6 }}
+      className="pieChart"
+      onClick={handleClick}
+      ref={ref}
+    ></svg>
+  );
 };
-
-/**
- * Helper function to get percentages from list. Returns an array of objects
- * @param {Array} array The category list
- * @param {string} keyword 'gender', 'race', 'age'
- * @return {Array} Returns an array of objects with the key value pairs: { category: 'Male', percentage: 53% }
- */
-function getPercentages(array, keyword = 'gender') {
-  const count = {};
-
-  const total = array.length;
-  for (let person of array) {
-    const key = person[keyword];
-    if (!count.hasOwnProperty(key)) count[key] = 0;
-    count[key] += 1;
-  }
-
-  const output = [];
-
-  for (let key in count) {
-    output.push({ category: key, percentage: (count[key] / total) * 100 });
-  }
-
-  return output;
-}
 
 export default PieChart;
