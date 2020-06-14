@@ -5,25 +5,26 @@ import BarChart from './BarChart.jsx';
 import PieChart from './PieChart';
 import UserHeader from './layout/UserHeader.jsx';
 
-const Home = () => {
-  const { fetchUserData, agePercent, racePercent, genderPercent } = useContext(
-    UserContext
-  );
-  const [loading, setLoading] = useState(true);
-  const [selectedFocus, setSelectedFocus] = useState('race');
-  const [colorList, setColorList] = useState([
-    '#4e79a7',
-    '#f28e2c',
-    '#e15759',
-    '#76b7b2',
-    '#59a14f',
-    '#edc949',
-    '#af7aa1',
-    '#ff9da7',
-    '#9c755f',
-    '#bab0ab',
-  ]);
+// choose chart color scheme here
+import { schemeSet1 as colorScheme } from "d3";
+// import { schemePaired as colorScheme } from "d3";
 
+import { scaleOrdinal } from "d3-scale";
+
+const Home = () => {
+    const { fetchUserData, agePercent, racePercent, genderPercent } = useContext(UserContext);
+    const [loading, setLoading] = useState(true);
+    const [selectedFocus, setSelectedFocus] = useState('race');
+    const [selectedHover, setSelectedHover] = useState('race');
+    const colorScale = scaleOrdinal(colorScheme);
+    
+    // console.log("Home -> genderPercent", genderPercent)
+    // console.log("Home -> racePercent", racePercent)
+    // console.log("Home -> agePercent", agePercent)
+    // function setSelectedFocus() {
+      
+    // }
+``
   // Temporarily hardcoded data
   const ageData = [
     { category: '18 - 35', percentage: 54.54545454545454 },
@@ -89,35 +90,49 @@ const Home = () => {
                 totalHeight={300}
                 index={0}
                 selectedFocus={selectedFocus}
-                colorList={colorList}
+                colorScale={colorScale}
               />
               <PieChart
-                x={400}
-                y={60}
-                data={genderData}
-                title="Gender"
-                colorList={colorList}
-                setSelectedFocus={setSelectedFocus}
-                index="gender"
-                active={selectedFocus === 'gender'}
-              />
-
-              <PieChart
-                x={400}
-                y={150}
+                x={390}
+                y={20}
+                width={70}
                 data={raceData}
                 title="Race"
-                colorList={colorList}
+                colorScale={colorScale}
+                localFocus={'race'}
+                selectedHover={selectedHover}
+                setSelectedHover={setSelectedHover}
+                selectedFocus={selectedFocus}
                 setSelectedFocus={setSelectedFocus}
                 index="race"
                 active={selectedFocus === 'race'}
               />
               <PieChart
-                x={400}
-                y={240}
+                x={390}
+                y={125} 
+                width={70}
+                data={genderData}
+                title="Gender"
+                colorScale={colorScale}
+                localFocus={'gender'}
+                selectedHover={selectedHover}
+                setSelectedHover={setSelectedHover}
+                selectedFocus={selectedFocus}
+                setSelectedFocus={setSelectedFocus}
+                index="gender"
+                active={selectedFocus === 'gender'}
+              />
+              <PieChart
+                x={390}
+                y={230}
+                width={70}
                 data={ageData}
                 title="Age"
-                colorList={colorList}
+                localFocus={'age'}
+                colorScale={colorScale}
+                selectedHover={selectedHover}
+                setSelectedHover={setSelectedHover}
+                selectedFocus={selectedFocus}
                 setSelectedFocus={setSelectedFocus}
                 index="age"
                 active={selectedFocus === 'age'}
