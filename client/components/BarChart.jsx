@@ -26,7 +26,7 @@ const Bar = props => {
   // Allows us to access this dom element from elsewhere I think? TBD...
   const rectRef = React.createRef();
   const countTextRef = React.createRef();
-  const { x, y, width, height, value } = props;
+  const { x, y, width, height, value, fill } = props;
 
   // Transition takes time so place in useEffect
   useEffect(() => {
@@ -40,8 +40,8 @@ const Bar = props => {
         y={y}
         width={width}
         ref={rectRef}
-        fill="green"
-        fill-opacity="80%"
+        fill={fill}
+        // fill-opacity="100%"
       />
       <text
         x={x + width / 2}
@@ -68,12 +68,13 @@ const BarChart = props => {
     totalWidth,
     totalHeight,
     selectedFocus,
+    colorScale
   } = props;
   const { raceList, genderList, ageList } = useContext(UserContext);
   // const { user } = useContext(UserContext);
 
   // Not using left/right margins currently
-  const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+  const margin = { top: 0, right: 0, bottom: 0, left: 0 };
   const barChartHeight = totalHeight - margin.top - margin.bottom;
 
   // Choose a list based on current user selection
@@ -100,6 +101,7 @@ const BarChart = props => {
       width={barWidth * 0.93}
       height={barChartHeight - barScale(row.avg_salary)}
       value={row.avg_salary}
+      fill={colorScale(i)}
     />
   ));
 
