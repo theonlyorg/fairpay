@@ -44,7 +44,8 @@ const Home = () => {
       category: 'Native Hawaiian or Other Pacific Islander',
       percentage: 18.181818181818183,
     },
-    { category: 'White', percentage: 36.36363636363637 },
+    { category: 'Other', percentage: 6 },
+    { category: 'White', percentage: 30.36363636363637 },
   ];
 
   // =========================== //

@@ -48,9 +48,9 @@ const PieChart = ({
     .append('path')
     // The 'd' attr defines the path to be drawn
     .attr('d', path)
-    .attr('stroke', 'black')
-    .attr('stroke-width', '1px')
-    .attr('stroke-opacity', '0.25')
+    .attr('stroke', 'grey')
+    .attr('stroke-width', '0.5px')
+    .attr('stroke-opacity', '0.5')
     .attr('fill', (data, i) => (active ? colorScale(i) : grayScale(i)));
 
   // Add percentages as the labels
